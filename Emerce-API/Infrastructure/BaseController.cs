@@ -1,36 +1,36 @@
 ﻿using Emerce_Model.User;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
+using System.Text;
+
 namespace Emerce_API.Infrastructure
 {
     public class BaseController : ControllerBase
     {
-        private readonly IMemoryCache memoryCache;
-
-        public BaseController( IMemoryCache _memoryCache )
+        private readonly IDistributedCache redisCache;
+        public BaseController( IDistributedCache _redisCache )
         {
-            memoryCache = _memoryCache;
+            redisCache = _redisCache;
         }
-
-
         public UserViewModel CurrentUser
         {
             get
             {
                 return GetCurrentUser();
             }
-
         }
-
         private UserViewModel GetCurrentUser()
         {
-            var response = new UserViewModel();
-            if ( memoryCache.TryGetValue("Login", out UserViewModel loginUser) )
+            var loginUser = new UserViewModel();
+            string jsonCacheItem;
+            var loginUserFromCache = redisCache.Get("Login");
+            if ( loginUserFromCache is not null )
             {
-                response = loginUser;
+                jsonCacheItem = Encoding.UTF8.GetString(loginUserFromCache);
+                loginUser = JsonConvert.DeserializeObject<UserViewModel>(jsonCacheItem);
             }
-
-            return response;
+            return loginUser;
         }
     }
 }

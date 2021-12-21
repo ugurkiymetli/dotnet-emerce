@@ -3,7 +3,7 @@ using Emerce_Model;
 using Emerce_Model.Category;
 using Emerce_Service.Category;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Emerce_API.Controllers
 {
@@ -14,7 +14,7 @@ namespace Emerce_API.Controllers
     {
         private readonly ICategoryService categoryService;
 
-        public CategoryController( ICategoryService _categoryService, IMemoryCache _memoryCache ) : base(_memoryCache)
+        public CategoryController( ICategoryService _categoryService, IDistributedCache _redisCache ) : base(_redisCache)
         {
             categoryService = _categoryService;
         }

@@ -34,7 +34,12 @@ namespace Emerce_API
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
             //memory cache
-            services.AddMemoryCache();
+            //services.AddMemoryCache();
+            //redis memory cache
+            services.AddStackExchangeRedisCache(action =>
+            {
+                action.Configuration = "localhost:6379";
+            });
             services.AddScoped<LoginFilter>();
             services.AddCors(options =>
             {

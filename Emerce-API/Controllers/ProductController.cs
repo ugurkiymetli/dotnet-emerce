@@ -3,7 +3,7 @@ using Emerce_Model;
 using Emerce_Model.Product;
 using Emerce_Service.Product;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Emerce_API.Controllers
 {
@@ -14,7 +14,7 @@ namespace Emerce_API.Controllers
     {
         private readonly IProductService productService;
 
-        public ProductController( IProductService _productService, IMemoryCache _memoryCache ) : base(_memoryCache)
+        public ProductController( IProductService _productService, IDistributedCache _redisCache ) : base(_redisCache)
         {
             productService = _productService;
         }
@@ -116,7 +116,6 @@ namespace Emerce_API.Controllers
         //Get Product By Id
         [HttpGet("{id}")]
         [LoginFilter]
-
         public General<ProductViewModel> GetById( int id )
         {
             return productService.GetById(id);
@@ -126,7 +125,6 @@ namespace Emerce_API.Controllers
         [HttpPut("{id}")]
         [LoginFilter]
         [AdminFilter]
-
         public General<ProductUpdateModel> Update( [FromBody] ProductUpdateModel updatedProduct, int id )
         {
             updatedProduct.Uuser = CurrentUser.Id;
