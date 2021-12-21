@@ -19,6 +19,7 @@ namespace Emerce_DB.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
+        public bool IsAdmin { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime Idatetime { get; set; }
         public DateTime? Udatetime { get; set; }

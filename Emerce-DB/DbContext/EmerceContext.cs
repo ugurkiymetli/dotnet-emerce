@@ -8,6 +8,7 @@ namespace Emerce_DB
     public partial class EmerceContext : DbContext
     {
         //Scaffold-DbContext "Server=(LocalDB)\MSSQLLocalDB;Database=Emerce;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -ContextDir Entities/DbContext -Context EmerceContext -Project Emerce-DB -StartupProject Emerce-DB -NoPluralize -Force
+
         public EmerceContext()
         {
         }
@@ -45,6 +46,10 @@ namespace Emerce_DB
                     .HasColumnType("datetime")
                     .HasColumnName("IDatetime");
 
+                entity.Property(e => e.IsActive)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
+
                 entity.Property(e => e.Iuser).HasColumnName("IUser");
 
                 entity.Property(e => e.Name)
@@ -81,6 +86,10 @@ namespace Emerce_DB
                     .HasColumnType("datetime")
                     .HasColumnName("IDatetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IsActive)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Iuser).HasColumnName("IUser");
 
@@ -121,6 +130,10 @@ namespace Emerce_DB
                     .HasColumnType("datetime")
                     .HasColumnName("IDatetime")
                     .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.IsActive)
+                    .IsRequired()
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Iuser).HasColumnName("IUser");
 

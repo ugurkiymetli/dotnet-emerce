@@ -9,7 +9,7 @@ namespace Emerce_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [LoginFilter]
+
     public class CategoryController : BaseController
     {
         private readonly ICategoryService categoryService;
@@ -20,6 +20,8 @@ namespace Emerce_API.Controllers
         }
         //Insert Category
         [HttpPost]
+        [LoginFilter]
+        [AdminFilter]
         public General<CategoryViewModel> Insert( [FromBody] CategoryCreateModel newCategory )
         {
             newCategory.Iuser = CurrentUser.Id;
@@ -27,12 +29,14 @@ namespace Emerce_API.Controllers
         }
         //Get Category
         [HttpGet]
+        [LoginFilter]
         public General<CategoryViewModel> Get()
         {
             return categoryService.Get();
         }
         //Get Category By Id
         [HttpGet("{id}")]
+        [LoginFilter]
         public General<CategoryViewModel> GetById( int id )
         {
             return categoryService.GetById(id);
@@ -40,6 +44,8 @@ namespace Emerce_API.Controllers
         //Update Category
 
         [HttpPut("{id}")]
+        [LoginFilter]
+        [AdminFilter]
         public General<CategoryViewModel> Update( [FromBody] CategoryUpdateModel updatedCategory, int id )
         {
             updatedCategory.Uuser = CurrentUser.Id;
@@ -49,6 +55,8 @@ namespace Emerce_API.Controllers
         //Delete User = throws ex if user is not found
 
         [HttpDelete("{id}")]
+        [LoginFilter]
+        [AdminFilter]
         public General<CategoryViewModel> Delete( int id )
         {
             return categoryService.Delete(id);

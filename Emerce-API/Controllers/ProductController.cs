@@ -9,7 +9,7 @@ namespace Emerce_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [LoginFilter]
+
     public class ProductController : BaseController
     {
         private readonly IProductService productService;
@@ -20,6 +20,8 @@ namespace Emerce_API.Controllers
         }
         //Insert Product
         [HttpPost]
+        [LoginFilter]
+        [AdminFilter]
         public General<ProductViewModel> Insert( [FromBody] ProductCreateModel newProduct )
         {
             newProduct.Iuser = CurrentUser.Id;
@@ -36,6 +38,7 @@ namespace Emerce_API.Controllers
 
         //Get Product 'Pagination'
         [HttpGet]
+        [LoginFilter]
         public General<ProductViewModel> Get( [FromQuery] int pageNumber, int pageSize, string sorting, int minPrice, int maxPrice )
         {
             var response = new General<ProductViewModel>();
@@ -112,6 +115,8 @@ namespace Emerce_API.Controllers
 
         //Get Product By Id
         [HttpGet("{id}")]
+        [LoginFilter]
+
         public General<ProductViewModel> GetById( int id )
         {
             return productService.GetById(id);
@@ -119,6 +124,9 @@ namespace Emerce_API.Controllers
 
         //Update Product
         [HttpPut("{id}")]
+        [LoginFilter]
+        [AdminFilter]
+
         public General<ProductUpdateModel> Update( [FromBody] ProductUpdateModel updatedProduct, int id )
         {
             updatedProduct.Uuser = CurrentUser.Id;
@@ -126,6 +134,8 @@ namespace Emerce_API.Controllers
         }
         //Delete Product
         [HttpDelete("{id}")]
+        [LoginFilter]
+        [AdminFilter]
         public General<ProductViewModel> Delete( int id )
         {
             return productService.Delete(id);

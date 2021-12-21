@@ -23,6 +23,8 @@ namespace Emerce_API.Controllers
         //Insert User returns General Object with IsSuccess, ErrorList, Posted Data...
         [HttpPost]
         [Route("register")]
+        [LoginFilter]
+        [AdminFilter]
         public General<UserViewModel> Insert( [FromBody] UserCreateModel newUser )
         {
             newUser.Iuser = CurrentUser.Id;
@@ -31,6 +33,7 @@ namespace Emerce_API.Controllers
 
         //Get All User = returns users in General object List
         [HttpGet]
+        [LoginFilter]
         public General<UserViewModel> Get()
         {
             return userService.Get();
@@ -38,6 +41,7 @@ namespace Emerce_API.Controllers
 
         //Get User By Id
         [HttpGet("{id}")]
+        [LoginFilter]
         public General<UserViewModel> GetById( int id )
         {
             return userService.GetById(id);
@@ -45,6 +49,7 @@ namespace Emerce_API.Controllers
 
         //Update User
         [HttpPut("{id}")]
+        [LoginFilter]
         public General<UserViewModel> Update( [FromBody] UserUpdateModel updatedUser, int id )
         {
             updatedUser.Uuser = CurrentUser.Id;
@@ -52,6 +57,8 @@ namespace Emerce_API.Controllers
         }
         //Delete User = throws ex if user is not found
         [HttpDelete("{id}")]
+        [LoginFilter]
+        [AdminFilter]
         public General<UserViewModel> Delete( int id )
         {
             return userService.Delete(id);
