@@ -11,6 +11,7 @@ namespace Emerce_DB.Entities
         public string Name { get; set; }
         public string DisplayName { get; set; }
         public string Description { get; set; }
+        public decimal? PriceUsd { get; set; }
         public decimal Price { get; set; }
         public int Stock { get; set; }
         public bool IsActive { get; set; }

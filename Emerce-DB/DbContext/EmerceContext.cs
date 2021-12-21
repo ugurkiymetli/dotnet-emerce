@@ -7,8 +7,7 @@ namespace Emerce_DB
 {
     public partial class EmerceContext : DbContext
     {
-        //Scaffold-DbContext "Server=(LocalDB)\MSSQLLocalDB;Database=Emerce;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -ContextDir Entities/DbContext -Context EmerceContext -Project Emerce-DB -StartupProject Emerce-DB -NoPluralize -Force
-
+        //Scaffold-DbContext "Server=(LocalDB)\MSSQLLocalDB;Database=Emerce;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -ContextDir DbContext -Context EmerceContext -Project Emerce-DB -StartupProject Emerce-DB -NoPluralize -Force
         public EmerceContext()
         {
         }
@@ -99,6 +98,10 @@ namespace Emerce_DB
                     .IsUnicode(false);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.PriceUsd)
+                    .HasColumnType("decimal(18, 2)")
+                    .HasColumnName("PriceUSD");
 
                 entity.Property(e => e.Udatetime)
                     .HasColumnType("datetime")
