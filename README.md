@@ -14,6 +14,8 @@ I made a simple UI for this project with React <3. You can check it out **[here]
 - Create, delete, update (User, Product, Category)
 - User must be logged in in order to view, create, update or delete items.
 - Products can be queried in pages. Pagination can be done with user inputs (pageSize, pageNumber).
+- Hangfire background jobs. (Clean user table, update prices)
+- Admin check for updating, inserting, deleting.
 
 # API Reference
 
@@ -576,9 +578,11 @@ curl --location --request DELETE 'https://localhost:44359/api/Thing/1'
 <!-- Created by UgurKiymetli -->
 
 </details>
-<br>
 
-## Week 4 - Assignment
+<!-- ## Week 4 - Assignment -->
+
+<details>
+<summary>Week 4 -  Assignment</summary>
 
 # Auth
 
@@ -821,6 +825,39 @@ curl --location --request GET 'https://localhost:44359/api/Product?pageSize=1&pa
   "exceptionMessage": null
 }
 ```
+
+</details>
+<br/>
+
+# [Hangfire](https://www.hangfire.io/) - Background Jobs
+
+An easy way to perform background processing in .NET and .NET Core applications. No Windows Service or separate process required.
+
+## Dashboard
+
+<img src="https://user-images.githubusercontent.com/34272634/147089347-cfd4e327-70dd-47b8-bc21-1eab5b3ffda2.gif" alt="hangfire-dashboard"></img>
+
+## Update Prices Job
+
+Configures on startup as reccuring job. Set to run hourly. Checks [Central Bank](http://www.tcmb.gov.tr/kurlar/today.xml) exchange rates for USD/TRY (any other api could be used here). Updates prices of all active products.
+
+```
+Update Prices job starts. USD/TRY is 13,0461. Date: 22.12.2021 14:34:35
+Product: 3020 updated. Price: 250,49 -> 250,485120. (22.12.2021 14:34:35)
+Product: 3021 updated. Price: 233,00 -> 233,003346. (22.12.2021 14:34:35)
+Product: 3022 updated. Price: 214,48 -> 214,477884. (22.12.2021 14:34:35)
+Product: 3024 updated. Price: 88,58 -> 88,583019. (22.12.2021 14:34:35)
+Product: 3025 updated. Price: 219,04 -> 219,044019. (22.12.2021 14:34:35)
+Product: 3026 updated. Price: 654,91 -> 654,914220. (22.12.2021 14:34:35)
+Product: 3027 updated. Price: 272,66 -> 272,663490. (22.12.2021 14:34:35)
+Product: 3028 updated. Price: 913,10 -> 913,096539. (22.12.2021 14:34:35)
+Product: 3029 updated. Price: 228,31 -> 228,306750. (22.12.2021 14:34:35)
+Product: 3030 updated. Price: 195,56 -> 195,561039. (22.12.2021 14:34:35)
+```
+
+## Clean User Table
+
+It is also configured on startup as reccurring job. But runs daily. Checks user table for not active and deleted users. And deletes them.
 
 ### Tech Stack
 
