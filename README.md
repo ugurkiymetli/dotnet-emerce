@@ -457,52 +457,6 @@ curl --location
 
 <!-- Created by UgurKiymetli -->
 
-<!---
-
-## Get a specific Thing
-
-
-
-### Request
-
-`GET /thing/id`
-
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/1
-
-### Response
-
-    HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
-    Status: 200 OK
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 36
-
-    {"id":1,"name":"Foo","status":"new"}
-
-## Get a non-existent Thing
-
-### Request
-
-`GET /thing/id`
-
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/9999
-
-### Response
-
-    HTTP/1.1 404 Not Found
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
-    Status: 404 Not Found
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 35
-
-    {"status":404,"reason":"Not found"}
-
--->
-
-<!-- Created by UgurKiymetli -->
-
 ## Delete a Thing _(Works Same For All Entities)_
 
 ### Request
@@ -554,26 +508,6 @@ curl --location --request DELETE 'https://localhost:44359/api/Thing/1'
   "exceptionMessage": "Thing with id: 1 is not found"
 }
 ```
-
-<!-- ## Get deleted Thing
-
-### Request
-
-`GET /thing/1`
-
-    curl -i -H 'Accept: application/json' http://localhost:7000/thing/1
-
-### Response
-
-    HTTP/1.1 404 Not Found
-    Date: Thu, 24 Feb 2011 12:36:33 GMT
-    Status: 404 Not Found
-    Connection: close
-    Content-Type: application/json
-    Content-Length: 35
-
-    {"status":404,"reason":"Not found"}
- -->
 
 <!-- Created by UgurKiymetli -->
 
@@ -863,10 +797,25 @@ It is also configured on startup as reccurring job. But runs daily. Checks user 
 
 **Backend:** .Net Core / **Frontend:** ReactJS / **Database:** MSSql
 
-### Acknowledgements
+<br>
+
+# What I Learned 🤓🤔
+
+- Creating Asp.Net Web API project.
+- Creating understandable endpoints. (REST API standarts)
+- Creating MsSql database and scaffolding (creating entites and DB context).
+- Enterprise(like) architecture. (DB-API-Model-Service-Admin projects must be separated.)
+- Importance of clean code. (other team players must be able to understand your code.)
+- Usage of git. (smaller commits is a win-win)
+- Usage of Action Filters. (can be used in insert product controller for user authorization.)
+- Usage of memory cache. (I used InMemoryCache and DistributedCache-redis. You can take some of the load of DB server with memory cache and improve performance.)
+- Usage of hangfire. (using tools like hangfire is a plus, you can manage all of your background jobs easily with hangfire dashboard.)
+- Usage of pagination-sorting-filters. (To improve performance of the API we can paginate our GET methods.)
+
+### Inspiration
 
 - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
 - [Awesome README](https://github.com/matiassingers/awesome-readme)
 - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
-
+- [REST API example Readme](https://github.com/bbc/REST-API-example/blob/master/README.md)
 <!-- Created by UgurKiymetli -->
