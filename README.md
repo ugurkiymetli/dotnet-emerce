@@ -773,20 +773,26 @@ An easy way to perform background processing in .NET and .NET Core applications.
 
 ## Update Prices Job
 
-Configures on startup as reccuring job. Set to run hourly. Checks [Central Bank](http://www.tcmb.gov.tr/kurlar/today.xml) exchange rates for USD/TRY (any other api could be used here). Updates prices of all active products.
+Configures on startup as reccuring job. Set to run hourly. Checks [Central Bank](http://www.tcmb.gov.tr/kurlar/today.xml) exchange rates for USD/TRY (any other api could be used here). Updates prices of all active products. After updating prices, logs the updated prices and date to the console window.
 
 ```
-Update Prices job starts. USD/TRY is 13,0461. Date: 22.12.2021 14:34:35
-Product: 3020 updated. Price: 250,49 -> 250,485120. (22.12.2021 14:34:35)
-Product: 3021 updated. Price: 233,00 -> 233,003346. (22.12.2021 14:34:35)
-Product: 3022 updated. Price: 214,48 -> 214,477884. (22.12.2021 14:34:35)
-Product: 3024 updated. Price: 88,58 -> 88,583019. (22.12.2021 14:34:35)
-Product: 3025 updated. Price: 219,04 -> 219,044019. (22.12.2021 14:34:35)
-Product: 3026 updated. Price: 654,91 -> 654,914220. (22.12.2021 14:34:35)
-Product: 3027 updated. Price: 272,66 -> 272,663490. (22.12.2021 14:34:35)
-Product: 3028 updated. Price: 913,10 -> 913,096539. (22.12.2021 14:34:35)
-Product: 3029 updated. Price: 228,31 -> 228,306750. (22.12.2021 14:34:35)
-Product: 3030 updated. Price: 195,56 -> 195,561039. (22.12.2021 14:34:35)
+--Console--
+Update Prices job starts. USD/TRY is 12,4760. Date: 22.12.2021 15:33:17
+Product: 3020 updated. Price: 250,49 -> 239,539200. (22.12.2021 15:33:18)
+Product: 3021 updated. Price: 233,00 -> 222,821360. (22.12.2021 15:33:18)
+Product: 3022 updated. Price: 214,48 -> 205,105440. (22.12.2021 15:33:18)
+Product: 3024 updated. Price: 88,58 -> 84,712040. (22.12.2021 15:33:18)
+Product: 3025 updated. Price: 219,04 -> 209,472040. (22.12.2021 15:33:18)
+Product: 3026 updated. Price: 654,91 -> 626,295200. (22.12.2021 15:33:18)
+Product: 3027 updated. Price: 272,66 -> 260,748400. (22.12.2021 15:33:18)
+Product: 3028 updated. Price: 913,10 -> 873,195240. (22.12.2021 15:33:18)
+Product: 3029 updated. Price: 228,31 -> 218,330000. (22.12.2021 15:33:18)
+Product: 3030 updated. Price: 195,56 -> 187,015240. (22.12.2021 15:33:18)
+Product: 3031 updated. Price: 559,68 -> 535,220400. (22.12.2021 15:33:18)
+Product: 3032 updated. Price: 1577,27 -> 1508,348400. (22.12.2021 15:33:18)
+Product: 3033 updated. Price: 717,41 -> 686,055240. (22.12.2021 15:33:18)
+Product: 3034 updated. Price: 547,54 -> 523,617720. (22.12.2021 15:33:18)
+Product: 3035 updated. Price: 521,58 -> 498,790480. (22.12.2021 15:33:18)
 ```
 
 ## Clean User Table
