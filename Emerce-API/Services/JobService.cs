@@ -12,12 +12,11 @@ namespace Emerce_API.Services
             {
                 var users = service.User.Where(u => !u.IsActive && u.IsDeleted);
                 foreach ( var user in users )
-                    Console.WriteLine($" Removed user: {user.Email}. ({System.DateTime.Now})");
+                    Console.WriteLine($" Removed user: {user.Email}. ({DateTime.Now})");
                 service.User.RemoveRange(users);
                 service.SaveChanges();
             }
         }
-
 
         public void UpdatePrices()
         {
@@ -27,15 +26,33 @@ namespace Emerce_API.Services
 
             using ( var service = new Emerce_DB.EmerceContext() )
             {
-                Console.WriteLine($"Update Prices job starts. USD/TRY is {usd}. Date: {System.DateTime.Now}");
+                Console.WriteLine($"Update Prices job starts. USD/TRY is {usd}. Date: {DateTime.Now}");
                 var products = service.Product.Where(p => p.IsActive && !p.IsDeleted).ToList();
                 foreach ( var product in products )
                 {
                     var oldPrice = product.PriceUsd;
                     product.PriceUsd = product.Price * usd;
-                    Console.WriteLine($"Product: {product.Id} updated. Price: {oldPrice} -> {product.PriceUsd}. ({System.DateTime.Now})");
+                    Console.WriteLine($"Product: {product.Id} updated. Price: {oldPrice} -> {product.PriceUsd}. ({DateTime.Now})");
                 }
                 service.SaveChanges();
+                Console.WriteLine($"Update Prices job finished. Updated {products.Count} products. Date: {DateTime.Now}");
+            }
+        }
+        public void SendWelcomeMail()
+        {
+            using ( var service = new Emerce_DB.EmerceContext() )
+            {
+                Console.WriteLine($"Sending welcome mail job started! Date: {DateTime.Now}");
+                //Console.WriteLine($"{DateTime.Now.AddDays(-1)}");
+                var users = service.User.Where(u => u.IsActive && !u.IsDeleted && u.IsWelcomeMailSent && u.Idatetime < DateTime.Now.AddDays(-1)).ToList();
+                foreach ( var user in users )
+                {
+                    user.IsWelcomeMailSent = false;
+                    //sendWelcomeMail(user.Email);
+                    Console.WriteLine($"Welcome to Emerce Id:{user.Id} - Mail:{user.Email}!");
+                }
+                service.SaveChanges();
+                Console.WriteLine($"Sending welcome mail job finished. Sent {users.Count} mails. Date: {DateTime.Now}");
             }
         }
     }

@@ -103,6 +103,7 @@ namespace Emerce_API
             //adding reccurring jobs at startup
             RecurringJob.AddOrUpdate("UpdatePricesUSD", () => new JobService().UpdatePrices(), Cron.Hourly);
             RecurringJob.AddOrUpdate("CleanUserTable", () => new JobService().CleanUserTable(), Cron.Daily);
+            RecurringJob.AddOrUpdate("SendWelcomeMail", () => new JobService().SendWelcomeMail(), Cron.Daily);
         }
     }
 }

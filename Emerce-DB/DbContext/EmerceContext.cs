@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Emerce_DB
 {
+    //Scaffold-DbContext "Server=(LocalDB)\MSSQLLocalDB;Database=Emerce;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -ContextDir DbContext -Context EmerceContext -Project Emerce-DB -StartupProject Emerce-DB -NoPluralize -Force
     public partial class EmerceContext : DbContext
     {
-        //Scaffold-DbContext "Server=(LocalDB)\MSSQLLocalDB;Database=Emerce;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -ContextDir DbContext -Context EmerceContext -Project Emerce-DB -StartupProject Emerce-DB -NoPluralize -Force
         public EmerceContext()
         {
         }

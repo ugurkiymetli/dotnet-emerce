@@ -21,6 +21,7 @@ namespace Emerce_DB.Entities
         public bool IsAdmin { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsWelcomeMailSent { get; set; }
         public DateTime Idatetime { get; set; }
         public DateTime? Udatetime { get; set; }
         public int Iuser { get; set; }
