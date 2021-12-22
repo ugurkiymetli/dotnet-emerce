@@ -4,7 +4,6 @@ using Emerce_Model.User;
 using Emerce_Service.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Emerce_API.Controllers
 {
@@ -15,7 +14,7 @@ namespace Emerce_API.Controllers
     {
         private readonly IUserService userService;
         //private readonly IMemoryCache memoryCache;
-        public UserController( IUserService _userService, IDistributedCache _redisCache, IMemoryCache _memoryCache ) : base(_redisCache)
+        public UserController( IUserService _userService, IDistributedCache _redisCache ) : base(_redisCache)
         {
             userService = _userService;
             //memoryCache = _memoryCache;

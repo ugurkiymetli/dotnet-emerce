@@ -32,6 +32,7 @@ namespace Emerce_API.Services
                 {
                     var oldPrice = product.PriceUsd;
                     product.PriceUsd = product.Price * usd;
+                    product.Udatetime = DateTime.Now;
                     Console.WriteLine($"Product: {product.Id} updated. Price: {oldPrice} -> {product.PriceUsd}. ({DateTime.Now})");
                 }
                 service.SaveChanges();
@@ -44,10 +45,10 @@ namespace Emerce_API.Services
             {
                 Console.WriteLine($"Sending welcome mail job started! Date: {DateTime.Now}");
                 //Console.WriteLine($"{DateTime.Now.AddDays(-1)}");
-                var users = service.User.Where(u => u.IsActive && !u.IsDeleted && u.IsWelcomeMailSent && u.Idatetime < DateTime.Now.AddDays(-1)).ToList();
+                var users = service.User.Where(u => u.IsActive && !u.IsDeleted && !u.IsWelcomeMailSent && u.Idatetime < DateTime.Now.AddDays(-1)).ToList();
                 foreach ( var user in users )
                 {
-                    user.IsWelcomeMailSent = false;
+                    user.IsWelcomeMailSent = true;
                     //sendWelcomeMail(user.Email);
                     Console.WriteLine($"Welcome to Emerce Id:{user.Id} - Mail:{user.Email}!");
                 }
